@@ -12,22 +12,33 @@
 
 var fetchButton = document.getElementById("fetch-button");
 
-var userNumInput = 3;
-
-function villagerAPI() {
-  // replace `octocat` with anyone else's GitHub username
-  var requestUrl = "https://acnhapi.com/v1/villagers/";
-
-  fetch(requestUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-    });
+// chooses random number between 0 and 391 (total villager endpoints in API)
+function randomVillager() {
+  var randomNum = Math.floor(Math.random() * 391);
+  // villagerAPI(randomNum);
+  villagerAPI();
 }
 
-fetchButton.addEventListener("click", villagerAPI);
+// fetches our random villager from the API
+// function villagerAPI(randomVillager) {
+function villagerAPI() {
+  // replace `octocat` with anyone else's GitHub username
+  // var requestUrl = `https://acnhapi.com/v1/villagers/${randomVillager}`;
+
+  let dataImgURL = "https://acnhapi.com/v1/images/villagers/62";
+  // fetch(requestUrl)
+  //   .then(function (response) {
+  //     return response.json();
+  //   })
+  //   .then(function (data) {
+  //     console.log(data);
+  // console.log(data.image_uri);
+  console.log(dataImgURL);
+  $("#villager-pic").attr("src", dataImgURL);
+  // });
+}
+
+fetchButton.addEventListener("click", randomVillager);
 
 // maybe do something like this general API call to villagers on page load, and use the response to iterate 0-391 to create the dropdown options for each villager
 // grab the name and id from each
